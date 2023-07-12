@@ -1,0 +1,131 @@
+﻿@using System.Collections.Concurrent
+@using Microsoft.AspNetCore.SignalR.Client
+@inherits LayoutComponentBase
+
+<h1>Main</h1>
+@*<MApp>
+    <MNavigationDrawer App Class="deep-purple accent-4" Dark Permanent>
+        <ChildContent>
+            <MList>
+                @foreach (var item in ChatHubClient.Groups)
+                {
+                    <MListItem Dark Href="@($"/{item}")">
+                        <MListItemIcon>
+                            <MIcon Dark>mdi-message-processing-outline</MIcon>
+                        </MListItemIcon>
+
+                        <MListItemContent>
+                            <MListItemTitle>@($"{@item}({ChatHubClient.MessageBox.Where(x=>x.Key == item).Select(x=>x.Value).Count()})")</MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                }
+            </MList>
+
+            <div class="pa-2">
+                <MButton Block Dark OnClick="()=>_groupDialog = true">Create Group</MButton>
+            </div>
+        </ChildContent>
+
+        <AppendContent>
+
+        </AppendContent>
+    </MNavigationDrawer>
+    <MMain>
+        <MContainer Fluid>
+            <MErrorHandler>
+                @Body
+            </MErrorHandler>
+        </MContainer>
+    </MMain>
+</MApp>*@
+
+
+@*<MDialog  @bind-Value="_groupDialog"
+                      Persistent
+                      MaxWidth="600">
+    <ActivatorContent>
+                <MButton Color="primary"
+                         Dark
+                         @attributes="@context.Attrs">
+                    创建组
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                <MCard>
+                    <MCardTitle>
+                        <span class="text-h5">创建组</span>
+                    </MCardTitle>
+                    <MCardText>
+                        <MContainer>
+                            <MTextField @bind-value="NewGroupName" Label="组名称" TValue="string"></MTextField>
+                        </MContainer>
+                    </MCardText>
+                    <MCardActions>
+                        <MSpacer></MSpacer>
+                        <MButton Color="blue darken-1"
+                                 Text
+                                 OnClick="() => _groupDialog = false">
+                            关闭
+                        </MButton>
+                        <MButton Color="blue darken-1"
+                                 Text
+                                 OnClick="()=> CreateGroup()">
+                            保存
+                        </MButton>
+                    </MCardActions>
+                </MCard>
+            </ChildContent>
+</MDialog>*@
+@code {
+    //private NavigationManager NavigationManager { get; set; } = null!;
+    //private HubConnection? _hubConnection;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    _hubConnection = new HubConnectionBuilder()
+    //        //.WithUrl(navigationManager.ToAbsoluteUri("/chat"))
+    //        .WithUrl("http://localhost:5297/chat")
+    //        .Build();
+    //    ChatHubClient.Configure(_hubConnection);
+    //    ChatHubClient.OnCreateGroup((group) =>
+    //    {
+    //        ChatHubClient.Groups.Add(group);
+    //        InvokeAsync(StateHasChanged);
+    //    });
+
+    //    ChatHubClient.OnReceiveGroupMessage((groupName, message) =>
+    //    {
+    //        ChatHubClient.Groups.Add(groupName);
+
+    //        ChatHubClient.MessageBox.TryGetValue(groupName, out var box);
+    //        box ??= new ConcurrentBag<string>();
+    //        box.Add(message);
+    //        ChatHubClient.MessageBox[groupName] = box;
+    //        InvokeAsync(StateHasChanged);
+    //    });
+
+    //    await _hubConnection.StartAsync();
+
+    //    await base.OnInitializedAsync();
+    //}
+
+    //private void NavToChatPage(string groupName)
+    //{
+    //    NavigationManager.NavigateTo($"/{groupName}");
+    //}
+
+    //#region 对话框
+
+    //private bool _groupDialog = false;
+    //private string NewGroupName { get; set; } = string.Empty;
+
+    //private async void CreateGroup()
+    //{
+    //    _groupDialog = false;
+
+    //    await ChatHubClient.CreateGroup(NewGroupName);
+    //}
+
+    //#endregion
+
+}

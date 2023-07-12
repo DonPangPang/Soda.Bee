@@ -1,0 +1,68 @@
+﻿@page "/"
+@*@page "/{groupName}"*@
+
+<PageTitle>Chat</PageTitle>
+<h1>Chat</h1>
+@*<div id="box" style="height: 600px; overflow:auto;" onchange="ScrollToEnd('box')">
+    @foreach (var item in GetMessage())
+    {
+        <div>@item</div>
+    }
+</div>
+
+<MTextarea @bind-value="Message" Outlined Autofocus>
+    <ChildContent>
+        <MButton OnClick="Send">发送</MButton>
+    </ChildContent>
+</MTextarea>
+<MButton OnClick="Send">发送</MButton>
+*@
+
+@code
+{
+    //[Parameter]
+    //public string GroupName { get; set; } = string.Empty;
+
+    //private string Message { get; set; } = string.Empty;
+
+    //private ConcurrentBag<string> GetMessage()
+    //{
+    //    if (string.IsNullOrWhiteSpace(GroupName) || !ChatHubClient.MessageBox.TryGetValue(GroupName, out var box))
+    //    {
+    //        return new ConcurrentBag<string>();
+    //    }
+
+    //    return box ?? new ConcurrentBag<string>();
+    //}
+
+    //private async void Send()
+    //{
+    //    if (string.IsNullOrWhiteSpace(Message.Trim()))
+    //    {
+    //        return;
+    //    }
+
+    //    await ChatHubClient.SendGroupMessage(GroupName, Message);
+
+    //    //Message = string.Empty;
+    //}
+
+    //protected override Task OnInitializedAsync()
+    //{
+    //    //ChatHubClient.OnReceiveGroupMessage(async (groupName, message) =>
+    //    //{
+    //    //    await InvokeAsync(StateHasChanged);
+    //    //});
+    //    return base.OnInitializedAsync();
+    //}
+
+    //private ElementReference scrollContainer;
+
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //    {
+    //        await JsRuntime.InvokeVoidAsync("scrollToBottom", scrollContainer);
+    //    }
+    //}
+}

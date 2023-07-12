@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <CascadingAuthenticationState>
+        <AuthorizeView>
+            <Authorized>
+                <MContainer>
+                    @Body
+                </MContainer>
+            </Authorized>
+            <NotAuthorized>
+                <LoginLayout></LoginLayout>
+            </NotAuthorized>
+        </AuthorizeView>
+    </CascadingAuthenticationState>
+</MApp>
+
+@code {
+
+}

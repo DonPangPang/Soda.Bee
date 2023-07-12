@@ -1,0 +1,48 @@
+﻿@using Soda.Bee.Web.Auth
+<MContainer Fluid>
+    <div class="box">
+        <MTextField @bind-value="@Name" TValue="string" Placeholder="请输入你的称呼" Solo Clearable Style="height:40px;">
+            <AppendOuterContent>
+                <MButton Fab Color="warning" Style="top: -16px"
+                         OnClick="Login">
+                    <MIcon>mdi-send</MIcon>
+                </MButton>
+            </AppendOuterContent>
+        </MTextField>
+    </div>
+</MContainer>
+
+<style>
+    .box {
+        width: 800px;
+        margin-top: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+@code {
+
+    [Inject]
+    private ILoginService LoginService { get; set; } = null!;
+
+    [Inject]
+    private IPopupService PopupService { get; set; } = null!;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    private string Name { get; set; } = string.Empty;
+
+    private async Task Login()
+    {
+        if (string.IsNullOrWhiteSpace(Name))
+        {
+            await PopupService.EnqueueSnackbarAsync("请输入称呼!", AlertTypes.Error);
+            return;
+        }
+
+        await LoginService.Login(Name);
+        NavigationManager.NavigateTo("/");
+    }
+}
